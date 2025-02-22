@@ -15,9 +15,13 @@ export default class RandomPlanet extends Component {
     error: false,
   };
 
-  constructor(props) {
-    super(props);
+  componentDidMount() {
     this.updatePlanet();
+    this.interval = setInterval(this.updatePlanet, 3000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
   }
 
   onPlanetLoaded = (planet) => {
@@ -28,16 +32,22 @@ export default class RandomPlanet extends Component {
   };
 
   updatePlanet = () => {
-    const id = Math.floor(Math.random() * 15) + 2;
-    this.swapiService.getPlanet(id).then(this.onPlanetLoaded).catch(this.onError);
+    let id = 20;
+    while (id === 20) {
+      id = Math.floor(Math.random() * 19) + 3;
+    }
+    this.swapiService
+      .getPlanet(id)
+      .then(this.onPlanetLoaded)
+      .catch(this.onError);
   };
 
   render() {
-    const { planet, loading, error} = this.state;
-    const hasData = !(loading || error)
-    const errorMessage = error ? <ErrorIndicator /> : null
+    const { planet, loading, error } = this.state;
+    const hasData = !(loading || error);
+    const errorMessage = error ? <ErrorIndicator /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = hasData ? <PlanetView planet={planet}/> : null
+    const content = hasData ? <PlanetView planet={planet} /> : null;
     return (
       <div className="random-planet jumbotron rounded">
         {errorMessage}
@@ -49,7 +59,7 @@ export default class RandomPlanet extends Component {
 }
 
 const PlanetView = ({ planet }) => {
-  const { id, name, population, rotationPeriod, diameter } = planet
+  const { id, name, population, rotationPeriod, diameter } = planet;
 
   return (
     <React.Fragment>
