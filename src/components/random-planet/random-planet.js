@@ -13,8 +13,8 @@ export default class RandomPlanet extends Component {
     loading: true,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.updatePlanet();
   }
 
@@ -25,10 +25,10 @@ export default class RandomPlanet extends Component {
     });
   };
 
-  updatePlanet() {
-    const id = 12;
+  updatePlanet = () => {
+    const id = Math.floor(Math.random() * 15) + 2;
     this.swapiService.getPlanet(id).then(this.onPlanetLoaded);
-  }
+  };
 
   render() {
     const { planet, loading } = this.state;
@@ -52,6 +52,7 @@ const PlanetView = ({ planet }) => {
       <img
         className="planet-image"
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+        alt={"Planet"}
       />
       <div>
         <h4>{name}</h4>
