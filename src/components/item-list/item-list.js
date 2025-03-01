@@ -7,7 +7,7 @@ export default class ItemList extends Component {
   swapiService = new SwapiService();
 
   state = {
-    peopleList: [],
+    peopleList: null,
   };
 
   componentDidMount() {
@@ -29,7 +29,7 @@ export default class ItemList extends Component {
       );
     });
   }
-  
+
   render() {
     const { peopleList } = this.state;
 
