@@ -89,6 +89,9 @@ export default class SwapiService {
       gender: person.gender,
       birthYear: person.birth_year,
       eyeColor: person.eye_color,
+      hairColor: person.hair_color,
+      mass: person.mass,
+      height: person.height,
     };
   };
 }
