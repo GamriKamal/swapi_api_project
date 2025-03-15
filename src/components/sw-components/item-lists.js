@@ -19,7 +19,9 @@ const renderNameAndGender = ({ name, gender }) => (
 
 const renderNameAndModel = ({ name, model }) => (
   <span>
-    {name}, &nbsp;model: {model}
+    <span>
+      {name}, &nbsp;{model}
+    </span>
   </span>
 );
 
