@@ -27,7 +27,11 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (this.props.itemId !== prevProps.itemId) {
+    if (
+      this.props.itemId !== prevProps.itemId ||
+      this.props.getData !== prevProps.getData ||
+      this.props.getImageUrl !== prevProps.getImageUrl
+    ) {
       this.updateItem();
       this.setState({ loading: true });
     }
@@ -35,7 +39,6 @@ export default class ItemDetails extends Component {
 
   updateItem = () => {
     const { itemId, getData, getImageUrl } = this.props;
-    console.log(getData);
     if (!itemId) {
       return;
     }
@@ -50,7 +53,7 @@ export default class ItemDetails extends Component {
   };
 
   render() {
-    if (!this.state.item) return <span>Select a person from a list</span>;
+    if (!this.state.item) return <span>Select an item from a list</span>;
 
     const { item, image, loading } = this.state;
 
@@ -65,7 +68,7 @@ export default class ItemDetails extends Component {
     ) : null;
 
     return (
-      <div className="person-details card">
+      <div className="item-details card">
         {spinner}
         {content}
       </div>
@@ -74,11 +77,11 @@ export default class ItemDetails extends Component {
 }
 
 const ItemDetailsView = ({ item, image, context }) => {
-  const { name } = item;
+  const { name, type } = item;
 
   return (
     <React.Fragment>
-      <img className="person-image" alt="person image" src={image} />
+      <img className="item-image" alt={`~-~${type}~-~`} />
       <div className="card-body">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
