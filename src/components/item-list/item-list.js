@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import "./item-list.css";
 
 const ItemList = (props) => {
@@ -12,7 +12,8 @@ const ItemList = (props) => {
       <li
         className="list-group-item"
         key={id}
-        onClick={() => onItemSelected(id)}>
+        onClick={() => onItemSelected(id)}
+      >
         {label}
       </li>
     );
@@ -21,4 +22,8 @@ const ItemList = (props) => {
   return <ul className="item-list list-group">{items}</ul>;
 };
 
-export default ItemList
+ItemList.defaultProps = {
+  onItemSelected: () => {},
+};
+
+export default ItemList;
