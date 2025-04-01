@@ -1,9 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { StarshipList } from "../sw-components";
-import { withRouter } from "react-router-dom";
 
-const StarshipsPage = ({ history }) => {
-  return <StarshipList onItemSelected={(itemId) => history.push(itemId)} />;
+const StarshipsPage = () => {
+  const navigate = useNavigate();
+
+  return <StarshipList onItemSelected={(id) => navigate(`/starships/${id}`)} />;
 };
 
-export default withRouter(StarshipsPage);
+export default StarshipsPage;
