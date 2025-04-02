@@ -51,7 +51,7 @@ export default class App extends Component {
               <Header />
               <RandomPlanet />
               <Routes>
-                <Route path="/" component={WelcomePage} exact />
+                <Route path="/" element={<WelcomePage />} />
                 <Route path="/people/:id?" element={<PeoplePage />} />
                 <Route path="/planets/:id?" element={<PlanetsPage />} />
                 <Route path="/starships" element={<StarshipsPage />} />
@@ -60,7 +60,7 @@ export default class App extends Component {
                   element={
                     <StarshipDetails
                       itemId={window.location.pathname.split("/").pop()}
-                    />
+                    />  
                   }
                 />
                 <Route
